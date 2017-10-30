@@ -1,0 +1,17 @@
+■練習問題: PatternMatching-2
+次のどれがマッチするだろう。
+
+- [a, b, a] = [1, 2, 3]
+iex(26)> [a, b, a] = [1, 2, 3]
+** (MatchError) no match of right hand side value: [1, 2, 3]
+マッチしない
+
+- [a, b, a] = [1, 1, 2]
+iex(26)> [a, b, a] = [1, 1, 2]
+** (MatchError) no match of right hand side value: [1, 1, 2]
+マッチしない
+
+- [a, b, a] = [1, 2, 1]
+iex(26)> [a, b, a] = [1, 2, 1]
+[1, 2, 1]
+マッチ
