@@ -1,0 +1,44 @@
+■練習問題: PatternMatching-3
+変数 a が、もともと 2 であるとき、次のどれがマッチするだろう。
+
+- [a, b, a] = [1, 2, 3]
+iex(29)> a = 2
+2
+iex(30)> [a, b, a] = [1, 2, 3]
+** (MatchError) no match of right hand side value: [1, 2, 3]
+マッチしない
+
+- [a, b, a] = [1, 1, 2]
+iex(30)> a = 2
+2
+iex(31)> [a, b, a] = [1, 1, 2]
+** (MatchError) no match of right hand side value: [1, 1, 2]
+マッチしない
+
+- a = 1
+iex(32)> a = 2
+2
+iex(33)> a = 1
+1
+マッチ
+
+- ^a = 2
+iex(34)> a = 2
+2
+iex(35)> ^a = 2
+2
+マッチ
+
+- ^a = 1
+iex(36)> a = 2
+2
+iex(37)> ^a = 1
+** (MatchError) no match of right hand side value: 1
+マッチしない
+
+- ^a = 2 - a
+iex(37)> a = 2
+2
+iex(38)> ^a = 2 - a
+** (MatchError) no match of right hand side value: 0
+マッチしない
