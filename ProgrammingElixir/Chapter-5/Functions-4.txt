@@ -1,0 +1,13 @@
+■練習問題: Functions-4
+文字列を一つ取る、prefix 関数を書いてみよう。…
+
+prefix = fn str_a -> (fn str_b -> "#{str_a} #{str_b}" end) end
+
+iex(1)> prefix = fn str_a -> (fn str_b -> "#{str_a} #{str_b}" end) end
+#Function<6.118419387/1 in :erl_eval.expr/5>
+iex(2)> mrs = prefix.("Mrs")
+#Function<6.118419387/1 in :erl_eval.expr/5>
+iex(3)> mrs.("Smith")
+"Mrs Smith"
+iex(4)> prefix.("Elixir").("Rocks")
+"Elixir Rocks"
