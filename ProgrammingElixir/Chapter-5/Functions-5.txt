@@ -1,0 +1,32 @@
+■練習問題: Functions-5
+&... 記法を使って、次のコードを書き換えてみよう。
+
+- Enum.map [1,2,3,4], fn x -> x + 2 end
+
+iex(1)> Enum.map [1,2,3,4], fn x -> x + 2 end
+[3, 4, 5, 6]
+
+書き換え
+Enum.map [1,2,3,4], &(&1 + 2)
+
+iex(2)> Enum.map [1,2,3,4], &(&1 + 2)
+[3, 4, 5, 6]
+
+- Enum.each [1,2,3,4], fn x -> IO.inspect x end
+
+iex(3)> Enum.each [1,2,3,4], fn x -> IO.inspect x end
+1
+2
+3
+4
+:ok
+
+書き換え
+Enum.each [1,2,3,4], &(IO.inspect(&1))
+
+iex(4)> Enum.each [1,2,3,4], &(IO.inspect(&1))
+1
+2
+3
+4
+:ok
