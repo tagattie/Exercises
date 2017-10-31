@@ -11,3 +11,6 @@ iex(2)> IO.puts handle_open.(File.open("nonexistent"))
 
 Windows 上の iex で確認したところ、上記のエラーが出てうまく動かないようだ
 そもそも handle_open 関数の読み込みに失敗しているように見える
+
+[追記]
+単に、関数定義に続く IO.puts 以降の部分を同一ファイル内に書き忘れていただけ
