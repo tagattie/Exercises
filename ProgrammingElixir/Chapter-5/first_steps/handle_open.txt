@@ -1,0 +1,13 @@
+iex(1)> c "handle_open.exs"
+warning: variable "handle_open" is unused
+  handle_open.exs:1
+
+[]
+iex(2)> IO.puts handle_open.(File.open("handle_open.exs"))
+** (CompileError) iex:2: undefined function handle_open/0
+
+iex(2)> IO.puts handle_open.(File.open("nonexistent"))
+** (CompileError) iex:2: undefined function handle_open/0
+
+Windows 上の iex で確認したところ、上記のエラーが出てうまく動かないようだ
+そもそも handle_open 関数の読み込みに失敗しているように見える
