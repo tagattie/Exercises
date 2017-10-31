@@ -1,0 +1,42 @@
+■練習問題: Functions-1
+iex の中で、次の関数を作り、呼び出してみよう。
+
+- list_concat.([:a, :b], [:c, :d]) #=> [:a, :b, :c, :d]
+iex(17)> list_concat = fn a, b -> a ++ b end
+#Function<12.99386804/2 in :erl_eval.expr/5>
+iex(18)> list_concat.([:a, :b], [:c, :d]) #=> [:a, :b, :c, :d]
+[:a, :b, :c, :d]
+iex(19)> list_concat.(1, 2)
+** (ArgumentError) argument error
+    :erlang.++(1, 2)
+iex(19)> list_concat.(:a, :b)
+** (ArgumentError) argument error
+    :erlang.++(:a, :b)
+引数の型がリストでないときはうまくいかない
+
+iex(19)> list_concat.([1], 2)
+[1 | 2]
+最初の引数をリストにしてみたらこうなった、これは??
+iex(20)> list_concat.([1], [2])
+[1, 2]
+両方の引数をリストにすると予想どおり
+
+- sum.(1, 2, 3) #=> 6
+iex(21)> sum = fn a, b, c -> a + b + c end
+#Function<18.99386804/3 in :erl_eval.expr/5>
+iex(22)> sum.(1, 2, 3) #=> 6
+6
+
+- pair_tuple_to_list.( { 1234, 5678 } ) #=> [ 1234, 5678 ]
+iex(24)> pair_tuple_to_list = fn {a, b} -> [a, b] end
+#Function<6.99386804/1 in :erl_eval.expr/5>
+iex(25)> pair_tuple_to_list.( { 1234, 5678 } ) #=> [ 1234, 5678 ]
+[1234, 5678]
+iex(26)> pair_tuple_to_list.( { 1234, 5678, 9012 } )
+** (FunctionClauseError) no function clause matching in :erl_eval."-inside-an-interpreted-fun-"/1
+
+    The following arguments were given to :erl_eval."-inside-an-interpreted-fun-"/1:
+
+        # 1
+        {1234, 5678, 9012}
+もちろん、タプルがペアでないとダメ
