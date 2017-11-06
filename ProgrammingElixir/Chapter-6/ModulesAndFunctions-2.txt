@@ -1,0 +1,46 @@
+■練習問題: ModulesAndFunctions-2
+iex でその結果を実行しよう。…
+
+- iex の起動時にファイルを読み込ませる方法
+> iex ModulesAndFunctions-1.exs
+Interactive Elixir (1.5.2) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)> Times.double
+** (UndefinedFunctionError) function Times.double/0 is undefined or private. Did you mean one of:
+
+      * double/1
+
+    Times.double()
+iex(1)> Times.triple
+** (UndefinedFunctionError) function Times.triple/0 is undefined or private. Did you mean one of:
+
+      * triple/1
+
+    Times.triple()
+iex(1)> Times.triple(3)
+9
+iex(2)> Times.triple(0.1)
+0.30000000000000004
+iex(3)>
+
+- iex を起動してから c コマンドでコンパイルする方法
+iex(4)> c "ModulesAndFunctions-1.exs"
+warning: redefining module Times (current version defined in memory)
+  ModulesAndFunctions-1.exs:4
+
+[Times]
+iex(5)> Times.double
+** (UndefinedFunctionError) function Times.double/0 is undefined or private. Did you mean one of:
+
+      * double/1
+
+    Times.double()
+iex(5)> Times.triple
+** (UndefinedFunctionError) function Times.triple/0 is undefined or private. Did you mean one of:
+
+      * triple/1
+
+    Times.triple()
+iex(5)> Times.triple(10)
+30
+iex(6)> Times.triple(1.0)
+3.0
