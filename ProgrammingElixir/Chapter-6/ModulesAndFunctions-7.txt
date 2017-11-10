@@ -1,0 +1,41 @@
+■練習問題: ModulesAndFunctions-7
+次のことをするライブラリを見つけ、iex で使ってみよう。…
+
+- 浮動小数点数を二つの 10 進数からなる文字列("3.14" のような)に変換する(Erlang)
+
+iex(15)> :io.format("~10.3f~n", [3.141502653])
+     3.142
+:ok
+
+- オペレーティングシステムの環境変数を取り出す。(Elixir)
+
+iex(21)> System.get_env("USERPROFILE")
+"C:\\Users\\Hiroki"
+
+System.get_env()　だとすべての環境変数を取り出す。
+
+- ファイル名の拡張子を取り出す("dave/test.exs" なら .exs を返す) (Erlang)
+
+iex(22)> :filename.extension("dave/test.exs")
+".exs"
+
+- プロセスのカレントワーキングディレクトリを返す(Elixir)
+
+iex(24)> System.cwd()
+"c:/Users/Hiroki/Work/tagattie/Exercises/ProgrammingElixir/Chapter-6/mm"
+
+エラー発生時に例外を投げる cwd!() というのもあるようだ。
+
+- JSON 文字列を、Elixir のデータ構造に変換する(見つけるだけで、インストールしないでいい)
+
+hex.pm にて json を検索すると、
+json
+poison
+jsx
+などが結果として出てくる。一番人気があるのは poison のようだ。
+
+- オペレーティングシステムのシェルでコマンドを実行する
+
+iex(1)> System.cmd("echo", ["Hello"])
+
+Windows 上の iex だと戻ってこないよう…
