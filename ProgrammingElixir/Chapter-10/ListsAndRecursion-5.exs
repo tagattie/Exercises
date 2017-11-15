@@ -32,4 +32,13 @@ defmodule MyEnum do
   defp _split(list1, list2, 0), do: {list1, list2}
   defp _split(list1, [], _), do: {list1, []}
 
+  # Enum.take(list, num)
+  def take(list, num) when num >= 0, do: _take([], list, num)
+
+  defp _take(list1, list2 = [head | tail], num) when num > 0 do
+    _take(list1 ++ [head], tail, num - 1)
+  end
+  defp _take(list1, list2, 0), do: list1
+  defp _take(list1, [], _), do: list1
+
 end
