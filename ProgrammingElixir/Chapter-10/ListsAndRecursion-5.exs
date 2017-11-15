@@ -1,3 +1,6 @@
+# ■練習問題: ListsAndRecursion-5
+# 次の 5つの Enum の関数 all?, each, filter, split, take を、ライブラリやリスト内包表記を利用せずに実装してみよう。
+
 defmodule MyEnum do
   # Enum.all?(list, func)
   def all?(list, func), do: _all?(list, func, true)
