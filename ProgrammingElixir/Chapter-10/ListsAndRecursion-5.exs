@@ -7,4 +7,9 @@ defmodule MyEnum do
   end
   defp _all?([], _, flag), do: flag
 
+  # Enum.each(list, func)
+  def each(_list = [head | tail], func) do
+    [ func.(head) | each(tail, func) ]
+  end
+  def each([], _), do: []
 end
