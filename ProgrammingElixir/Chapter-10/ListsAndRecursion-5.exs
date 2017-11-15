@@ -23,4 +23,13 @@ defmodule MyEnum do
   end
   def filter([], _), do: []
 
+  # Enum.split(list, num)
+  def split(list, num) when num >= 0, do: _split([], list, num)
+
+  defp _split(list1, list2 = [head | tail], num) when num > 0 do
+    _split(list1 ++ [head], tail, num - 1)
+  end
+  defp _split(list1, list2, 0), do: {list1, list2}
+  defp _split(list1, [], _), do: {list1, []}
+
 end
