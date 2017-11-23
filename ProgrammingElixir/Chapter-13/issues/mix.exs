@@ -14,6 +14,7 @@ defmodule Issues.Mixfile do
 
   # Run "mix help compile.app" to learn about applications.
   def application do
+    [ applications: [:httpoison] ]
     [
       extra_applications: [:logger]
     ]
