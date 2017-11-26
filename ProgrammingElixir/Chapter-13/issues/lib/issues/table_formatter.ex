@@ -43,7 +43,8 @@ defmodule Issues.TableFormatter do
 
   @doc """
   Return a binary (string) version of our parameter.
-  ## Examples
+
+  ## Example
       iex> Issues.TableFormatter.printable("a")
       "a"
       iex> Issues.TableFormatter.printable(99)
@@ -69,7 +70,7 @@ defmodule Issues.TableFormatter do
   Return a format string that hard codes the widths of a set of columns.
   We put `" | "` between each column.
 
-  ##Example
+  ## Example
       iex> widths = [5,6,99]
       iex> Issues.TableFormatter.format_for(widths)
       "~-5s | ~-6s | ~-99s~n"
