@@ -11,8 +11,7 @@ defmodule NoaaObs.XmlHandler do
   defrecord :xmlText,
     extract(:xmlText, from_lib: "xmerl/include/xmerl.hrl")
 
-  @targets [:station_id, :location, :weather, :temperature_string,
-            :relative_humidity]
+  @targets [:station_id, :location, :weather, :temperature_string, :relative_humidity]
 
   def parse_xml({:ok, body}) do
     {xmldoc, _} = body
@@ -28,7 +27,7 @@ defmodule NoaaObs.XmlHandler do
     # |> :xmerl_scan.string([space: :normalize])
     # HTML document returned for non-existent location seems invalid.
     # Only to put "XML parse error"
-    [%{ :error => "XML parse error" }]
+    [{ :error, "XML parse error" }]
   end
 
   def parse_weather([weather]) do
@@ -37,7 +36,7 @@ defmodule NoaaObs.XmlHandler do
         [node] = :xmerl_xpath.string('//' ++ to_charlist(target), weather)
         [text] = xmlElement(node, :content)
         value = xmlText(text, :value)
-        %{ target => value }
+        { target, value }
       end)
   end
 
