@@ -1,18 +1,17 @@
-defmodule Noaaobs do
+defmodule NoaaObs do
   @moduledoc """
-  Documentation for Noaaobs.
+  Get and display the latest weather observation data specified by
+  location codes.
   """
 
-  @doc """
-  Hello world.
+  import NoaaObs.CLI, only: [ parse_args: 1, process_args: 1 ]
 
-  ## Examples
+  def main(argv) do
+    locs = argv
+    |> parse_args
+    |> process_args
 
-      iex> Noaaobs.hello
-      :world
-
-  """
-  def hello do
-    :world
+    IO.puts "List of loccodes:"
+    IO.puts "#{inspect(locs)}"
   end
 end
