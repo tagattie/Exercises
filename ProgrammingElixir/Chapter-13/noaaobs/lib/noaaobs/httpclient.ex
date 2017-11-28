@@ -9,8 +9,9 @@ defmodule NoaaObs.HttpClient do
     |> process_response
   end
 
+  @data_url Application.get_env(:noaaobs, :data_url)
   def data_url(loc) do
-    "http://w1.weather.gov/xml/current_obs/#{loc}.xml"
+    "#{@data_url}/#{loc}.xml"
   end
 
   def process_response({ :ok, %{status_code: 200, body: body }}) do
