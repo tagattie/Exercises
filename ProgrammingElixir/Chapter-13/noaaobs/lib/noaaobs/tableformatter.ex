@@ -1,9 +1,10 @@
 defmodule NoaaObs.TableFormatter do
 
-  import Enum, only: [ each: 2, map: 2, map_join: 3, max: 1 ]
+  import Enum, only: [ each: 2, map: 2, map_join: 3, max: 1, unzip: 1 ]
 
-  def print_table_for_columns(rows, headers) do
-    with data_by_columns = split_into_columns(rows, headers),
+  def print_table_for_columns(rows, items) do
+    { targets, headers } = unzip(items)
+    with data_by_columns = split_into_columns(rows, targets),
          column_widths   = widths_of(data_by_columns),
            format          = format_for(column_widths)
       do
@@ -13,9 +14,9 @@ defmodule NoaaObs.TableFormatter do
     end
   end
 
-  def split_into_columns(rows, headers) do
-    for header <- headers do
-      for row <- rows, do: printable(row[header])
+  def split_into_columns(rows, items) do
+    for item <- items do
+      for row <- rows, do: printable(row[item])
     end
   end
 
@@ -37,7 +38,7 @@ defmodule NoaaObs.TableFormatter do
   end
 
   def separator(column_widths) do
-    map_join(column_widths, "-+-", fn width -> List.duplicate("-", width) end)
+    IO.puts map_join(column_widths, "-+-", fn width -> List.duplicate("-", width) end)
   end
 
   def puts_in_columns(data_by_columns, format) do

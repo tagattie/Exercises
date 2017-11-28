@@ -4,11 +4,17 @@ defmodule NoaaObs do
   location codes.
   """
 
-  @targets [:station_id, :location, :weather, :temperature_string, :relative_humidity]
+  @targets [
+    station_id: "Id",
+    location: "Location",
+    weather: "Weather",
+    temperature_string: "Temp",
+    relative_humidity: "H%"
+  ]
 
   import NoaaObs.CLI, only: [ parse_args: 1, process_args: 1 ]
   import NoaaObs.HttpClient, only: [ fetch: 1 ]
-  import NoaaObs.XmlHandler, only: [ parse_xml: 1 ]
+  import NoaaObs.XmlHandler, only: [ parse_xml: 2 ]
   import NoaaObs.TableFormatter, only: [ print_table_for_columns: 2 ]
 
   def main(argv) do
@@ -16,6 +22,7 @@ defmodule NoaaObs do
     |> parse_args
     |> process_args
     IO.puts "List of loccodes: #{inspect(locs)}"
+    { targets, _headers } = Enum.unzip(@targets)
     weathers = for loc <- locs do
       fetch(loc)
       |> parse_xml(targets)
