@@ -10,8 +10,8 @@ defmodule NoaaObs do
     station_id: "Id",
     location: "Location",
     weather: "Weather",
-    temperature_string: "Temp",
-    relative_humidity: "H%"
+    temp_c: "Temp(C)",
+    relative_humidity: "RH(%)"
   ]
 
   import NoaaObs.CLI, only: [ parse_args: 1, process_args: 1 ]

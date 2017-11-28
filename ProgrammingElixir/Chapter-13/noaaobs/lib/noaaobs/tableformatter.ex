@@ -25,7 +25,7 @@ defmodule NoaaObs.TableFormatter do
 
   def widths_of(columns) do
     for column <- columns do
-      column |> map(&String.length/1) |> max |> min(30) # cutoff width 30
+      column |> map(&String.length/1) |> max |> min(40) # cutoff width 40
     end
   end
 
