@@ -4,6 +4,7 @@ defmodule NoaaObs.Mixfile do
   def project do
     [
       app: :noaaobs,
+      escript: escript_config(),
       version: "0.1.0",
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
@@ -24,5 +25,9 @@ defmodule NoaaObs.Mixfile do
     [
       { :httpoison, "~> 0.8"   }
     ]
+  end
+
+  defp escript_config do
+    [ main_module: NoaaObs ]
   end
 end
