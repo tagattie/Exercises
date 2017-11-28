@@ -11,17 +11,15 @@ defmodule NoaaObs.XmlHandler do
   defrecord :xmlText,
     extract(:xmlText, from_lib: "xmerl/include/xmerl.hrl")
 
-  @targets [:station_id, :location, :weather, :temperature_string, :relative_humidity]
-
-  def parse_xml({:ok, body}) do
+  def parse_xml({:ok, body}, items) do
     {xmldoc, _} = body
     |> :binary.bin_to_list
     |> :xmerl_scan.string
     :xmerl_xpath.string('//current_observation', xmldoc)
-    |> parse_weather
+    |> parse_weather(items)
   end
 
-  def parse_xml({:error, _body}) do
+  def parse_xml({:error, _body}, _columns) do
     # {xmldoc, _} = body
     # |> :binary.bin_to_list
     # |> :xmerl_scan.string([space: :normalize])
@@ -30,8 +28,8 @@ defmodule NoaaObs.XmlHandler do
     [{ :error, "XML parse error" }]
   end
 
-  def parse_weather([weather]) do
-    Enum.map(@targets,
+  def parse_weather([weather], items) do
+    Enum.map(items,
       fn(target) ->
         [node] = :xmerl_xpath.string('//' ++ to_charlist(target), weather)
         [text] = xmlElement(node, :content)

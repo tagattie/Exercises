@@ -18,7 +18,7 @@ defmodule NoaaObs do
     IO.puts "List of loccodes: #{inspect(locs)}"
     weathers = for loc <- locs do
       fetch(loc)
-      |> parse_xml
+      |> parse_xml(targets)
     end
     IO.puts "Weather data: #{inspect(weathers)}"
     IO.puts "Result table:"
