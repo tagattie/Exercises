@@ -19,13 +19,13 @@ defmodule NoaaObs.XmlHandler do
     |> parse_weather(items)
   end
 
-  def parse_xml({:error, _body}, _columns) do
+  def parse_xml({:error, message}, _items) do
     # {xmldoc, _} = body
     # |> :binary.bin_to_list
     # |> :xmerl_scan.string([space: :normalize])
     # HTML document returned for non-existent location seems invalid.
     # Only to put "XML parse error"
-    [{ :error, "XML parse error" }]
+    [{ :error, message }]
   end
 
   def parse_weather([weather], items) do

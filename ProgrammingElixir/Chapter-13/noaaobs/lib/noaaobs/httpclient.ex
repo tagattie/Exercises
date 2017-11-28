@@ -22,7 +22,7 @@ defmodule NoaaObs.HttpClient do
 
   def process_response({ _, %{status_code: status, body: body }}) do
     Logger.error "Error #{status} returned"
-    { :error, body }
+    { :error, message = "Error #{status} returned" }
   end
 
 end
