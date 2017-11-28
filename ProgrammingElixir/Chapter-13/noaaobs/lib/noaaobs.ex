@@ -4,6 +4,8 @@ defmodule NoaaObs do
   location codes.
   """
 
+  require Logger
+
   @targets [
     station_id: "Id",
     location: "Location",
@@ -21,14 +23,14 @@ defmodule NoaaObs do
     locs = argv
     |> parse_args
     |> process_args
-    IO.puts "List of loccodes: #{inspect(locs)}"
+    Logger.info "List of location codes: #{inspect(locs)}"
     { targets, _headers } = Enum.unzip(@targets)
     weathers = for loc <- locs do
       fetch(loc)
       |> parse_xml(targets)
     end
-    IO.puts "Weather data: #{inspect(weathers)}"
-    IO.puts "Result table:"
+    Logger.debug fn -> "Weather data of location codes: #{inspect(weathers)}" end
+    IO.puts "Weather table:"
     print_table_for_columns(weathers, @targets)
   end
 end

@@ -7,6 +7,7 @@ use Mix.Config
 # file won't be loaded nor affect the parent project. For this reason,
 # if you want to provide default values for your application for
 # 3rd-party users, it should be done in your "mix.exs" file.
+config :logger, compile_time_purge_level: :info
 
 # You can configure your application as:
 #

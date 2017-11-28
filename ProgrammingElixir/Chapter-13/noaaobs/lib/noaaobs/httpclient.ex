@@ -1,6 +1,9 @@
 defmodule NoaaObs.HttpClient do
 
+  require Logger
+
   def fetch(loc) do
+    Logger.info "Fetching weather data for #{inspect(loc)}"
     data_url(loc)
     |> HTTPoison.get()
     |> process_response
@@ -11,10 +14,13 @@ defmodule NoaaObs.HttpClient do
   end
 
   def process_response({ :ok, %{status_code: 200, body: body }}) do
+    Logger.debug "Successful response returned"
+    Logger.debug fn -> inspect(body) end
     { :ok, body }
   end
 
-  def process_response({ _, %{status_code: _, body: body }}) do
+  def process_response({ _, %{status_code: status, body: body }}) do
+    Logger.error "Error #{status} returned"
     { :error, body }
   end
 
