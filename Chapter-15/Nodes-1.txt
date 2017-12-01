@@ -1,0 +1,30 @@
+■練習問題: Nodes-1
+二つの端末ウィンドウを用意して、それぞれ異なるディレクトリに移動しよう。片方の
+ウィンドウで、カレントディレクトリの中身を調べる関数を書こう。
+  fun = fn -> IO.puts(Enum.join(File.ls!, ","))
+そして、この関数を、それぞれのノードで実行しよう。
+
+□ウィンドウ1
+$ pwd
+/c/Users/Hiroki/Work/tagattie/ProgrammingElixir
+
+$ iex --sname node1
+Interactive Elixir (1.5.2) - press Ctrl+C to exit (type h() ENTER for help)
+iex(node1@nakiska)1> fun = fn -> IO.puts(Enum.join(File.ls!, ".")) end
+#Function<20.99386804/0 in :erl_eval.expr/5>
+iex(node1@nakiska)2> Node.spawn(:node1@nakiska, fun)
+.editorconfig..git..gitignore.Chapter-10.Chapter-11.Chapter-12.Chapter-13.Chapter-14.Chapter-15.Chapter-2.Chapter-4.Chapter-5.Chapter-6.Chapter-7.Chapter-8.README.md
+#PID<0.90.0>
+iex(node1@nakiska)3> Node.spawn(:node2@nakiska, fun)
+#PID<9998.92.0>
+iex(node1@nakiska)4> .git..gitignore..travis.yml.autoSwitch.go.autoSwitch.json.autoSwitch.json.sample.autoswitch.log.bin.couponChangeByIdBasedUsage.go.couponChangeByRemainingAmount.go.couponData.go.couponReq.go.couponResp.go.GNUmakefile.httpClient.go.LICENSE.mailClient.go.messageBuilder.go.packetData.go.README.md.slackClient.go
+
+□ウィンドウ2
+$ pwd
+/c/Users/Hiroki/Work/tagattie/IIJmio-AutoSwitch
+
+$ iex --sname node2
+Interactive Elixir (1.5.2) - press Ctrl+C to exit (type h() ENTER for help)
+iex(node2@nakiska)1>
+
+ノード2からノード1へ接続して存在を知らせておく必要はないようだ。
