@@ -8,4 +8,8 @@ defmodule Stack.Server do
   def handle_call(:pop, _from, _list = [head | tail]) do
     { :reply, head, tail }
   end
+
+  def handle_cast({:push, top}, list) do
+    { :noreply, [ top | list ] }
+  end
 end
