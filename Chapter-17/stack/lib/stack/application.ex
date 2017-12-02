@@ -9,7 +9,7 @@ defmodule Stack.Application do
     # List all child processes to be supervised
     children = [
       # Starts a worker by calling: Stack.Worker.start_link(arg)
-      # {Stack.Worker, arg},
+      {Stack.Server, [5, "cat", 9]},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
