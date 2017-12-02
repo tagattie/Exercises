@@ -24,4 +24,9 @@ defmodule Stack.Server do
   def handle_cast({:push, top}, list) do
     { :noreply, [ top | list ] }
   end
+
+  def terminate(reason, state) do
+    IO.puts "reason: #{inspect reason}"
+    IO.puts "state: #{inspect state}"
+  end
 end
