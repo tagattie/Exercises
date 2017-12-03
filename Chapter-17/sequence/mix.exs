@@ -15,7 +15,7 @@ defmodule Sequence.Mixfile do
   def application do
     [
       extra_applications: [:logger],
-      mod: {Sequence.Application, []}
+      mod: {Sequence, []}
     ]
   end
 
