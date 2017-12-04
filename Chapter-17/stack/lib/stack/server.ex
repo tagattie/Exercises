@@ -26,12 +26,12 @@ defmodule Stack.Server do
     { :ok, {current_stack, stash_pid} }
   end
 
-  def handle_cast({:initialize, list}, { _current_stack, stash_pid }) do
-    { :noreply, { list, stash_pid} }
-  end
-
   def handle_call(:pop, _from, {_list = [head | tail], stash_pid}) do
     { :reply, head, { tail, stash_pid} }
+  end
+
+  def handle_cast({:initialize, list}, { _current_stack, stash_pid }) do
+    { :noreply, { list, stash_pid} }
   end
 
   def handle_cast({:push, top}, { list, stash_pid}) do
