@@ -19,6 +19,10 @@ defmodule Stack.Server do
     GenServer.cast __MODULE__, { :push, element }
   end
 
+  def view do
+    GenServer.call __MODULE__, :view
+  end
+
   ##### GenServer implementation
   #
   def init(stash_pid) do
@@ -28,6 +32,10 @@ defmodule Stack.Server do
 
   def handle_call(:pop, _from, {_list = [head | tail], stash_pid}) do
     { :reply, head, { tail, stash_pid} }
+  end
+
+  def handle_call(:view, _from, {list, stash_pid}) do
+    { :reply, list, { list, stash_pid} }
   end
 
   def handle_cast({:initialize, list}, { _current_stack, stash_pid }) do
