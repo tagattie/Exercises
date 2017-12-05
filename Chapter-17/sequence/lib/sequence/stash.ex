@@ -1,6 +1,8 @@
 defmodule Sequence.Stash do
   use GenServer
 
+  @vsn "0"
+
   ##### 外部 API
   #
 
