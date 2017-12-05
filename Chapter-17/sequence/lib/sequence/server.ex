@@ -27,8 +27,8 @@ defmodule Sequence.Server do
   # GenServer の実装
 
   def init(stash_pid) do
-    current_number = Sequence.Stash.get_value stash_pid
-    { :ok, %State{current_number: current_number, stash_pid: stash_pid} }
+    { current_number, current_delta } = Sequence.Stash.get_value stash_pid
+    { :ok, %State{current_number: current_number, stash_pid: stash_pid, delta: current_delta} }
   end
 
   def handle_call(:next_number, _from, state) do
@@ -43,7 +43,7 @@ defmodule Sequence.Server do
   end
 
   def terminate(_reason, state) do
-    Sequence.Stash.save_value state.stash_pid, state.current_number
+    Sequence.Stash.save_value state.stash_pid, state.current_number, state.delta
   end
 
   def format_status(_reason, [ _pdict, state ]) do
