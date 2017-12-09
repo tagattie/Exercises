@@ -1,3 +1,13 @@
+# ■練習問題: LinkingModules-BehavioursAndUse-2
+# 組込み関数の IO.ANSI.escape は ANSI エスケープシーケンスを文字列に挿入する。挿入
+# された文字列をターミナルに出力する際に、色や太字、反転、アンダーラインといった効果を
+# つけることができる。
+#   iex(1)> IO.puts IO.ANSI.format(["Hello, ", :inverse, :bright, "world!"], true)
+#   Hello, world!
+# ライブラリを調査しよう。IO.ANSI.format の返り値は何になるだろうか。そして、その
+# 返り値を IO.puts に渡すと、なぜ動くのだろうか。
+# それから IO.ANSI.format を使って、トレースの出力を色付けしてみよう。
+
 defmodule Tracer do
   def dump_args(args) do
     args |> Enum.map(&inspect/1) |> Enum.join(", ")
