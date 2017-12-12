@@ -1,18 +1,39 @@
 defmodule LineSigil do
-  @moduledoc """
-  Documentation for LineSigil.
-  """
-
   @doc """
-  Hello world.
+  Implement the `~l` sigil, which　takes a string containing
+  multiple lines and returns a list of those lines.
 
-  ## Examples
+  ## Example usage
 
-      iex> LineSigil.hello
-      :world
-
+    iex> import LineSigil
+    nil
+    iex> ~l\"""
+    ...> one
+    ...> two
+    ...> three
+    ...> \"""
+    ["one","two","three"]
   """
-  def hello do
-    :world
+  def sigil_l(lines, _opts) do
+    # lines |> String.rstrip |> String.split("\n")
+    lines |> String.trim_trailing |> String.split("\n")
   end
 end
+
+defmodule Example do
+  import LineSigil
+
+  def lines do
+    ~l"""
+    line 1
+    line 2
+    and another line in #{__MODULE__}
+    """
+  end
+end
+
+IO.inspect Example.lines
+
+# iex(1)> c "line_sigil.ex"
+# ["line 1", "line 2", "and another line in Elixir.Example"]
+# [Example, LineSigil]
